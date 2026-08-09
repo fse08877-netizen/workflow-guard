@@ -1,0 +1,41 @@
+{
+  "name": "workflow-guard",
+  "version": "0.1.0",
+  "description": "Security-policy linter and hardening tool for GitHub Actions workflows.",
+  "type": "module",
+  "main": "./src/index.js",
+  "bin": {
+    "workflow-guard": "./src/cli.js"
+  },
+  "files": [
+    "src",
+    "action.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "github-actions",
+    "security",
+    "linter",
+    "ci",
+    "cd",
+    "devsecops",
+    "supply-chain",
+    "workflow",
+    "policy"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fse08877-netizen/workflow-guard.git"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

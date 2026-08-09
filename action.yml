@@ -1,0 +1,35 @@
+name: Workflow Guard
+description: Scan GitHub Actions workflows for security and policy issues.
+
+inputs:
+  path:
+    description: Path to scan. Defaults to the repository workspace.
+    required: false
+    default: ""
+  fail_on:
+    description: Failure threshold. One of error, warning, none.
+    required: false
+    default: "error"
+  format:
+    description: Output format. One of pretty, sarif.
+    required: false
+    default: "pretty"
+
+runs:
+  using: composite
+  steps:
+    - name: Install workflow-guard dependencies
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      run: npm install --omit=dev --no-audit --no-fund
+
+    - name: Run workflow-guard
+      shell: bash
+      working-directory: ${{ github.action_path }}
+      env:
+        WG_PATH: ${{ inputs.path }}
+        WG_FAIL_ON: ${{ inputs.fail_on }}
+        WG_FORMAT: ${{ inputs.format }}
+      run: |
+        SCAN_PATH="${WG_PATH:-$GITHUB_WORKSPACE}"
+        node src/cli.js scan "$SCAN_PATH" --fail-on "$WG_FAIL_ON" --format "$WG_FORMAT"

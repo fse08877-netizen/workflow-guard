@@ -1,0 +1,27 @@
+version: 1
+failOn: error
+
+rules:
+  unpinned-action:
+    enabled: true
+    allowed:
+      - actions/checkout@v4
+      - actions/setup-node@v4
+
+  missing-permissions:
+    enabled: true
+
+  excessive-permissions:
+    enabled: true
+
+  dangerous-pull-request-target:
+    enabled: true
+
+  script-injection:
+    enabled: true
+
+  secret-echo:
+    enabled: true
+
+  missing-timeout:
+    enabled: true
